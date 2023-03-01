@@ -93,6 +93,18 @@ public class ObjectPredictions
   }
 
   /**
+   * Returns the timestamp as string.
+   *
+   * @return		the timestamp, can be null
+   */
+  public String getTimestampStr() {
+    if (m_Timestamp != null)
+      return TIMESTAMP_FORMATTER.format(m_Timestamp);
+    else
+      return null;
+  }
+
+  /**
    * Returns the ID.
    *
    * @return		the ID
