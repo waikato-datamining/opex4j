@@ -43,6 +43,12 @@ public class ObjectPredictions
   /** the formatter to use. */
   public final static DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_FORMAT);
 
+  /** the (alternative) format for the timestamp (Python: %Y-%m-%d %H:%M:%S.%f). */
+  public final static String TIMESTAMP_FORMAT_ALT = "yyyy-MM-dd HH:mm:ss.SSSSSS";
+
+  /** the (alternative) formatter to use. */
+  public final static DateTimeFormatter TIMESTAMP_FORMATTER_ALT = DateTimeFormatter.ofPattern(TIMESTAMP_FORMAT_ALT);
+
   /** the timestamp. */
   protected LocalDateTime m_Timestamp;
 
@@ -292,6 +298,7 @@ public class ObjectPredictions
    */
   public static ObjectPredictions newInstance(JsonObject obj) {
     LocalDateTime		timestamp;
+    String			timestampStr;
     String			id;
     List<ObjectPrediction>	objects;
     JsonArray			jobjects;
@@ -300,10 +307,20 @@ public class ObjectPredictions
     int				i;
 
     timestamp = null;
-    if (obj.has("timestamp"))
-      timestamp = LocalDateTime.parse(
-	obj.get("timestamp").getAsString(),
-	TIMESTAMP_FORMATTER);
+    if (obj.has("timestamp")) {
+      timestampStr = obj.get("timestamp").getAsString();
+      try {
+	timestamp = LocalDateTime.parse(timestampStr, TIMESTAMP_FORMATTER);
+      }
+      catch (Exception e) {
+	try {
+	  timestamp = LocalDateTime.parse(timestampStr, TIMESTAMP_FORMATTER_ALT);
+	}
+	catch (Exception e2) {
+	  System.err.println("Failed to parse timestamp: " + obj);
+	}
+      }
+    }
 
     id = obj.get("id").getAsString();
 
