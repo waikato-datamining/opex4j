@@ -7,7 +7,7 @@ Here is an [example](src/test/resources/opex4j/simple.json):
 
 ```json
 {
-  "timestamp": "yyyyMMdd_HHmmss.SSSSSS",
+  "timestamp": "...",
   "id": "str",
   "objects": [
     {
@@ -56,6 +56,10 @@ Here is an [example](src/test/resources/opex4j/simple.json):
   }
 }
 ```
+
+**Notes:**
+
+* supported timestamp formats: `yyyyMMdd_HHmmss.SSSSSS` and `yyyy-MM-dd HH:mm:ss.SSSSSS`
 
 
 ## Reading/Writing
@@ -131,6 +135,6 @@ Use the following dependency in your `pom.xml`:
     <dependency>
       <groupId>nz.ac.waikato.cms.adams</groupId>
       <artifactId>opex4j</artifactId>
-      <version>0.0.1</version>
+      <version>0.0.2</version>
     </dependency>
 ```
