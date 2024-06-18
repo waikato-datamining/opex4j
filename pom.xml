@@ -5,7 +5,7 @@
 
   <groupId>nz.ac.waikato.cms.adams</groupId>
   <artifactId>opex4j</artifactId>
-  <version>0.0.4-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>opex4j</name>
