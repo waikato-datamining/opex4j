@@ -1,6 +1,6 @@
 /*
  * ObjectPredictions.java
- * Copyright (C) 2023 University of Waikato, Hamilton, New Zealand
+ * Copyright (C) 2023-2024 University of Waikato, Hamilton, New Zealand
  */
 
 package opex4j;
@@ -307,7 +307,7 @@ public class ObjectPredictions
     int				i;
 
     timestamp = null;
-    if (obj.has("timestamp")) {
+    if (obj.has("timestamp") && !obj.get("timestamp").isJsonNull()) {
       timestampStr = obj.get("timestamp").getAsString();
       try {
 	timestamp = LocalDateTime.parse(timestampStr, TIMESTAMP_FORMATTER);
@@ -330,7 +330,7 @@ public class ObjectPredictions
       objects.add(ObjectPrediction.newInstance(jobjects.get(i).getAsJsonObject()));
 
     meta = null;
-    if (obj.has("meta")) {
+    if (obj.has("meta") && !obj.get("meta").isJsonNull()) {
       jmeta = obj.get("meta").getAsJsonObject();
       meta  = new HashMap<>();
       for (String key: jmeta.keySet())

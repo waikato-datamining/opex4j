@@ -1,6 +1,6 @@
 /*
  * ObjectPrediction.java
- * Copyright (C) 2023 University of Waikato, Hamilton, New Zealand
+ * Copyright (C) 2023-2024 University of Waikato, Hamilton, New Zealand
  */
 
 package opex4j;
@@ -143,7 +143,7 @@ public class ObjectPrediction
     result.addProperty("label", m_Label);
     result.add("bbox", m_BBox.toJson());
     result.add("polygon", m_Polygon.toJson());
-    if (m_Meta.size() > 0) {
+    if (!m_Meta.isEmpty()) {
       meta = new JsonObject();
       for (String key: m_Meta.keySet())
         meta.addProperty(key, m_Meta.get(key));
@@ -167,12 +167,12 @@ public class ObjectPrediction
     Map<String,String>	meta;
     JsonObject		jmeta;
 
-    score   = (obj.has("score")) ? obj.get("score").getAsDouble() : null;
+    score   = (obj.has("score") && !obj.get("score").isJsonNull()) ? obj.get("score").getAsDouble() : null;
     label   = obj.get("label").getAsString();
     bbox    = BBox.newInstance(obj.get("bbox").getAsJsonObject());
     polygon = Polygon.newInstance(obj.get("polygon").getAsJsonObject());
     meta    = null;
-    if (obj.has("meta")) {
+    if (obj.has("meta") && !obj.get("meta").isJsonNull()) {
       jmeta = obj.get("meta").getAsJsonObject();
       meta  = new HashMap<>();
       for (String key: jmeta.keySet())
