@@ -1,5 +1,6 @@
 # opex4j
-Java library for the [OPEX JSON format](https://github.com/WaikatoLink2020/objdet-predictions-exchange-format).
+Java library for the [OPEX JSON format](https://github.com/WaikatoLink2020/objdet-predictions-exchange-format)
+(faster Python alternative: [fast-opex](https://github.com/waikato-datamining/fast-opex)).
 
 ## JSON
 
@@ -135,6 +136,6 @@ Use the following dependency in your `pom.xml`:
     <dependency>
       <groupId>nz.ac.waikato.cms.adams</groupId>
       <artifactId>opex4j</artifactId>
-      <version>0.0.2</version>
+      <version>0.0.3</version>
     </dependency>
 ```
